@@ -1,0 +1,76 @@
+.container{
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.rainy{
+    position: relative;
+    overflow: hidden;
+}
+.rainy::before{
+    content: '';
+    position: absolute;
+    background-image: url('./assets/rainy.jpg');
+    background-position: top center;
+    background-size: cover;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    opacity: 1;
+}
+.cloudy{
+    position: relative;
+    overflow: hidden;
+}
+.cloudy::before{
+    content: '';
+    position: absolute;
+    background-image: url('./assets/clouds.jpg');
+    background-position: top center;
+    background-size: cover;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    opacity: 1;
+}
+.clear{
+    position: relative;
+    overflow: hidden;
+}
+.clear::before{
+    content: '';
+    position: absolute;
+    background-image: url('./assets/sunny.jpg');
+    background-position: top center;
+    background-size: cover;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    opacity: 1;
+}
+.snow{
+    position: relative;
+    overflow: hidden;
+}
+.snow::before{
+    content: '';
+    position: absolute;
+    background-image: url('./assets/snowy.jpg');
+    background-position: top center;
+    background-size: cover;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    opacity: 1;
+}
+h1{
+    position: relative;
+}
