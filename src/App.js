@@ -8,7 +8,8 @@ function App() {
   useEffect(() => {
     // const myKey = 'df35fbdda85415498def473162c912f8b4edac30e599f6d0eb4e9025';
     // fetch(`https://api.ipdata.co?api-key=${myKey}`)
-    fetch("http://ip-api.com/json")
+    // fetch("https://ip-api.com/json")
+    fetch('https://freegeoip.app/json/')
       .then((y) => y.json())
       .then((data) => setLocation(data));
   }, []);
@@ -64,7 +65,7 @@ function App() {
             </h3>
         </div>
       ) : (
-        <p>Loading...</p>
+        <p className='loading'>Loading...</p>
       )}
     </div>
   );

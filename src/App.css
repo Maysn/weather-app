@@ -134,3 +134,12 @@ h3{
         background-position: top right;
     }
 }
+.loading{
+    position: absolute;
+    top: 37%;
+    left: 45%;
+    margin-left: -50px;
+    font-family: cursive;
+    font-size: 3rem;
+    font-weight: bolder;
+}
