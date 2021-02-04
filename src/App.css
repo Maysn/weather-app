@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital@1&display=swap');
 .container{
     position: relative;
     height: 100vh;
@@ -6,6 +8,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: black;
 }
 .rainy{
     position: relative;
@@ -14,14 +17,14 @@
 .rainy::before{
     content: '';
     position: absolute;
-    background-image: url('./assets/rainy.jpg');
+    background-image: url('./assets/rain.jpg');
     background-position: top center;
     background-size: cover;
     top: 0px;
     bottom: 0px;
     left: 0px;
     right: 0px;
-    opacity: 1;
+    opacity: .35;
 }
 .cloudy{
     position: relative;
@@ -37,7 +40,7 @@
     bottom: 0px;
     left: 0px;
     right: 0px;
-    opacity: 1;
+    opacity: .5;
 }
 .clear{
     position: relative;
@@ -53,7 +56,7 @@
     bottom: 0px;
     left: 0px;
     right: 0px;
-    opacity: 1;
+    opacity: .5;
 }
 .snow{
     position: relative;
@@ -69,8 +72,65 @@
     bottom: 0px;
     left: 0px;
     right: 0px;
-    opacity: 1;
+    opacity: .5;
+}
+.haze{
+    position: relative;
+    overflow: hidden;
+}
+.haze::before{
+    content: '';
+    position: absolute;
+    background-image: url('./assets/haze.jpg');
+    background-position: top center;
+    background-size: cover;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    opacity: .35;
 }
 h1{
+    font-size: 5rem;
+}
+h2{
+    font-size: 2.7rem;
+}
+h3{
+    font-size: 2.1rem;
+    font-family: 'Raleway', sans-serif !important; 
+}
+.grid{
+    min-height: 350px;
+    width: 75%;
     position: relative;
+    bottom: 11%;
+    box-shadow: 0 5px 15px rgba(0,0,0);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 170px 30px 150px;
+    justify-items: center;
+    align-items: center;
+    grid-template-areas: 
+        "temp"
+        "city"
+        "desc";
+}
+.forecast{
+    font-family: 'Big Shoulders Display', cursive;
+    color: gainsboro;
+    position: relative;
+    background: rgba(255,255,255,0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+}
+@media (max-width:600px){
+    h3{
+        font-size: 1.1rem;
+    }
+    .snow::before{
+        background-position: top right;
+    }
+    .rainy::before{
+        background-position: top right;
+    }
 }
