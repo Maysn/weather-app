@@ -52,15 +52,15 @@ function App() {
             <h2 className='forecast'>{weather.name}</h2>
             <h3 className='forecast'>
               {weatherDesc === "clouds"
-                ? "It's sooo cloudy.. STAY HOME!"
+                ? "It's sooo cloudy.. STAY HOME !"
                 : weatherDesc === "rain"
-                ? "It's sooo rainy.. STAY HOME!"
+                ? "It's sooo rainy.. STAY HOME !"
                 : weatherDesc === "snow"
-                ? "It's sooo snowie.. STAY HOME!"
+                ? "It's sooo snowie.. STAY HOME !"
                 : weatherDesc === "clear"
-                ? "Sky is so clear.. STAY HOME!"
+                ? "Sky is so clear.. STAY HOME !"
                 : weatherDesc === "haze"
-                ? "It's sooo haze.. STAY HOME!"
+                ? "It's sooo haze.. STAY HOME !"
                 : ""}
             </h3>
         </div>

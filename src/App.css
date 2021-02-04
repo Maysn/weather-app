@@ -105,7 +105,6 @@ h3{
     width: 75%;
     position: relative;
     bottom: 11%;
-    box-shadow: 0 5px 15px rgba(0,0,0);
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 170px 30px 150px;
@@ -120,8 +119,7 @@ h3{
     font-family: 'Big Shoulders Display', cursive;
     color: gainsboro;
     position: relative;
-    background: rgba(255,255,255,0.1);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+    filter: drop-shadow(2px 4px 3px black);
 }
 @media (max-width:600px){
     h3{
