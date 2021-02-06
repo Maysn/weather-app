@@ -90,6 +90,38 @@
     right: 0px;
     opacity: .35;
 }
+.misty{
+    position: relative;
+    overflow: hidden;
+}
+.misty::before{
+    content: '';
+    position: absolute;
+    background-image: url('./assets/mist.jpg');
+    background-position: top center;
+    background-size: cover;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    opacity: .35;
+}
+.default{
+    position: relative;
+    overflow: hidden;
+}
+.default::before{
+    content: '';
+    position: absolute;
+    background-image: url('./assets/default.jpg');
+    background-position: top center;
+    background-size: cover;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    opacity: .35;
+}
 h1{
     font-size: 5rem;
 }

@@ -43,7 +43,9 @@ function App() {
           ? "container snow"
           : weatherDesc === "haze"
           ? "container haze"
-          : ""
+          : weatherDesc === "mist"
+          ? "container misty"
+          : "container default"
       }
     >
       {weather ? (
@@ -61,7 +63,9 @@ function App() {
                 ? "Sky is so clear.. STAY HOME !"
                 : weatherDesc === "haze"
                 ? "It's sooo hazy.. STAY HOME !"
-                : ""}
+                : weatherDesc === "mist"
+                ? "It's sooo misty.. STAY HOME !"
+                : "JUST STAY HOME !"}
             </h3>
         </div>
       ) : (
