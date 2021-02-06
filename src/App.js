@@ -9,7 +9,7 @@ function App() {
     // const myKey = 'df35fbdda85415498def473162c912f8b4edac30e599f6d0eb4e9025';
     // fetch(`https://api.ipdata.co?api-key=${myKey}`)
     // fetch("https://ip-api.com/json")
-    fetch('https://freegeoip.app/json/')
+    fetch("https://freegeoip.app/json/")
       .then((y) => y.json())
       .then((data) => setLocation(data));
   }, []);
@@ -50,26 +50,30 @@ function App() {
     >
       {weather ? (
         <div className="grid">
-            <h1 className='forecast'>{`${Math.round(weather.main.temp - 273.15)}°`}</h1>
-            <h2 className='forecast'>{weather.name}</h2>
-            <h3 className='forecast'>
-              {weatherDesc === "clouds"
-                ? "It's sooo cloudy.. STAY HOME !"
-                : weatherDesc === "rain"
-                ? "It's sooo rainy.. STAY HOME !"
-                : weatherDesc === "snow"
-                ? "It's sooo snowie.. STAY HOME !"
-                : weatherDesc === "clear"
-                ? "Sky is so clear.. STAY HOME !"
-                : weatherDesc === "haze"
-                ? "It's sooo hazy.. STAY HOME !"
-                : weatherDesc === "mist"
-                ? "It's sooo misty.. STAY HOME !"
-                : "JUST STAY HOME !"}
-            </h3>
+          <h1 className="forecast">{`${Math.round(
+            weather.main.temp - 273.15
+          )}°`}</h1>
+          <h2 className="forecast">{weather.name}</h2>
+          <h3 className="forecast">
+            {weatherDesc === "clouds"
+              ? "It's sooo cloudy.. STAY HOME !"
+              : weatherDesc === "rain"
+              ? "It's sooo rainy.. STAY HOME !"
+              : weatherDesc === "snow"
+              ? "It's sooo snowie.. STAY HOME !"
+              : weatherDesc === "clear"
+              ? "Sky is so clear.. STAY HOME !"
+              : weatherDesc === "haze"
+              ? "It's sooo hazy.. STAY HOME !"
+              : weatherDesc === "mist"
+              ? "It's sooo misty.. STAY HOME !"
+              : "JUST STAY HOME !"}
+          </h3>
         </div>
       ) : (
-        <p className='loading'>Loading...</p>
+        <div className="no-container">
+          <p className="loading">Loading...</p>
+        </div>
       )}
     </div>
   );

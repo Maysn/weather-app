@@ -163,6 +163,9 @@ h3{
     .rainy::before{
         background-position: top right;
     }
+    .default::before{
+        background-position: bottom right;
+    }
 }
 .loading{
     position: absolute;
@@ -172,4 +175,10 @@ h3{
     font-family: cursive;
     font-size: 3rem;
     font-weight: bolder;
+}
+.no-container{
+    background-color: rgb(109, 102, 102);
+    height: 100%;
+    width: 100%;
+    z-index: 10;
 }
