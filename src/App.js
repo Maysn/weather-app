@@ -60,7 +60,7 @@ function App() {
                 : weatherDesc === "clear"
                 ? "Sky is so clear.. STAY HOME !"
                 : weatherDesc === "haze"
-                ? "It's sooo haze.. STAY HOME !"
+                ? "It's sooo hazy.. STAY HOME !"
                 : ""}
             </h3>
         </div>
