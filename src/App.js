@@ -6,10 +6,10 @@ function App() {
   const [weather, setWeather] = useState();
 
   useEffect(() => {
-    // const myKey = 'df35fbdda85415498def473162c912f8b4edac30e599f6d0eb4e9025';
-    // fetch(`https://api.ipdata.co?api-key=${myKey}`)
+    const myKey = 'df35fbdda85415498def473162c912f8b4edac30e599f6d0eb4e9025';
+    fetch(`https://api.ipdata.co?api-key=${myKey}`)
     // fetch("https://ip-api.com/json")
-    fetch("https://freegeoip.app/json/")
+    // fetch("https://freegeoip.app/json/")
       .then((y) => y.json())
       .then((data) => setLocation(data));
   }, []);
@@ -26,6 +26,7 @@ function App() {
     }
     getWeather(location.city);
   }, [location]);
+  console.log(location);
   console.log(weather);
 
   const weatherDesc = weather ? weather.weather[0].main.toLowerCase() : "";
