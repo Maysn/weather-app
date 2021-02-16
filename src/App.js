@@ -32,24 +32,26 @@ function App() {
   const weatherDesc = weather ? weather.weather[0].main.toLowerCase() : "";
 
   return (
-    <div
-      className={
+    <div>
+    {weather? <div
+      className={` container ${
         weatherDesc === "clear"
-          ? "container clear"
+          ? "clear"
           : weatherDesc === "clouds"
-          ? "container cloudy"
+          ? "cloudy"
           : weatherDesc === "rain"
-          ? "container rainy"
+          ? "rainy"
           : weatherDesc === "snow"
-          ? "container snow"
+          ? "snow"
           : weatherDesc === "haze"
-          ? "container haze"
+          ? "haze"
           : weatherDesc === "mist"
-          ? "container misty"
-          : "container default"
-      }
+          ? "misty"
+          : weatherDesc === "sand"
+          ? "sand"
+          : "default"
+      }`}
     >
-      {weather ? (
         <div className="grid">
           <h1 className="forecast">{`${Math.round(
             weather.main.temp - 273.15
@@ -68,14 +70,15 @@ function App() {
               ? "It's sooo hazy.. STAY HOME !"
               : weatherDesc === "mist"
               ? "It's sooo misty.. STAY HOME !"
+              : weatherDesc === "sand"
+              ? "A SANDSTORM.. RUNNNN !"
               : "JUST STAY HOME !"}
           </h3>
         </div>
-      ) : (
+      </div> :
         <div className="no-container">
           <p className="loading">Loading...</p>
-        </div>
-      )}
+        </div> }
     </div>
   );
 }
