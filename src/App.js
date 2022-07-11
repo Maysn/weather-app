@@ -15,26 +15,10 @@ function App() {
       .then((y) => y.json())
       .then((data) => setLocation(data));
 
-    const list = fetch("https://countriesnow.space/api/v0.1/countries")
+    fetch("https://countriesnow.space/api/v0.1/countries")
       .then((response) => response.json())
-      .then((res) => res.data)
+      .then((list) => setCitiesList(list.data))
       .catch((error) => console.log(error));
-    if (list?.length < 1) {
-      return;
-    }
-
-    const flattenedCitiesList = list?.reduce(
-      (acc, currItem) => [
-        ...acc,
-        ...currItem.cities.map((city) => ({
-          city: city,
-          country: currItem.country,
-        })),
-      ],
-      []
-    );
-    console.log({ flattenedCitiesList, list });
-    setCitiesList(flattenedCitiesList);
   }, []);
 
   useEffect(() => {

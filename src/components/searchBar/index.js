@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
 
 function SearchBar({ citiesList }) {
@@ -17,17 +17,18 @@ function SearchBar({ citiesList }) {
   //   "Monofeya-msh-bakhel",
   // ];
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchResult, setSearchResult] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    const result = citiesList?.filter((item) =>
-      item.city.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-    setSearchResult(result);
-  }, [searchQuery, citiesList]);
-
-  console.log({ searchResult, citiesList });
+  const flattenedCitiesList = citiesList?.reduce(
+    (acc, currItem) => [
+      ...acc,
+      ...currItem.cities.map((city) => ({
+        city: city,
+        country: currItem.country,
+      })),
+    ],
+    []
+  );
+  console.log(flattenedCitiesList);
   return (
     <div>
       <input
@@ -37,10 +38,14 @@ function SearchBar({ citiesList }) {
         onChange={(e) => setSearchQuery(e.target.value)}
       />
       <button>search</button>
-      {searchResult
-        ? searchResult.map((item) => (
-            <div className="search_result">{`${item.city}, ${item.country}`}</div>
-          ))
+      {searchQuery
+        ? flattenedCitiesList
+            .filter((item) =>
+              item.city.toLowerCase().includes(searchQuery.toLowerCase())
+            )
+            .map((item) => (
+              <div className="search_result">{`${item.city}, ${item.country}`}</div>
+            ))
         : ""}
     </div>
   );
