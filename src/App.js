@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
+import SearchBar from "./components/searchBar";
 
 function App() {
   const [location, setLocation] = useState({});
   const [weather, setWeather] = useState();
+  const [citiesList, setCitiesList] = useState();
 
   useEffect(() => {
     const myKey = "df35fbdda85415498def473162c912f8b4edac30e599f6d0eb4e9025";
@@ -12,6 +14,27 @@ function App() {
       // fetch("https://freegeoip.app/json/")
       .then((y) => y.json())
       .then((data) => setLocation(data));
+
+    const list = fetch("https://countriesnow.space/api/v0.1/countries")
+      .then((response) => response.json())
+      .then((res) => res.data)
+      .catch((error) => console.log(error));
+    if (list?.length < 1) {
+      return;
+    }
+
+    const flattenedCitiesList = list?.reduce(
+      (acc, currItem) => [
+        ...acc,
+        ...currItem.cities.map((city) => ({
+          city: city,
+          country: currItem.country,
+        })),
+      ],
+      []
+    );
+    console.log({ flattenedCitiesList, list });
+    setCitiesList(flattenedCitiesList);
   }, []);
 
   useEffect(() => {
@@ -28,11 +51,13 @@ function App() {
   }, [location]);
   console.log(location);
   console.log(weather);
+  console.log(citiesList);
 
   const weatherDesc = weather ? weather.weather[0].main.toLowerCase() : "";
 
   return (
     <div>
+      <SearchBar citiesList={citiesList} />
       {weather ? (
         <div
           className={` container ${
