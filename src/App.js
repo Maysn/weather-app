@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import SearchBar from "./components/searchBar";
+import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 
 function App() {
   const [location, setLocation] = useState({});
   const [weather, setWeather] = useState();
-  const [citiesList, setCitiesList] = useState();
 
   useEffect(() => {
     const myKey = "df35fbdda85415498def473162c912f8b4edac30e599f6d0eb4e9025";
@@ -14,11 +14,6 @@ function App() {
       // fetch("https://freegeoip.app/json/")
       .then((y) => y.json())
       .then((data) => setLocation(data));
-
-    fetch("https://countriesnow.space/api/v0.1/countries")
-      .then((response) => response.json())
-      .then((list) => setCitiesList(list.data))
-      .catch((error) => console.log(error));
   }, []);
 
   useEffect(() => {
@@ -35,13 +30,11 @@ function App() {
   }, [location]);
   console.log(location);
   console.log(weather);
-  console.log(citiesList);
 
   const weatherDesc = weather ? weather.weather[0].main.toLowerCase() : "";
 
   return (
     <div>
-      <SearchBar citiesList={citiesList} />
       {weather ? (
         <div
           className={` container ${
@@ -63,10 +56,21 @@ function App() {
           }`}
         >
           <div className="grid">
+            <SearchBar setWeather={setWeather} location={location} />
             <h1 className="forecast">{`${Math.round(
               weather.main.temp - 273.15
             )}°`}</h1>
-            <h2 className="forecast">{weather.name}</h2>
+            <h2 className="forecast">{`${weather.name}, ${weather.sys.country}`}</h2>
+            <div className="flex forecast">
+              <h2 style={{ marginRight: "2rem" }}>
+                <FaArrowUp className="fa-arrows" />
+                {`${Math.round(weather.main.temp_max - 273.15)}`} &deg;
+              </h2>
+              <h2 style={{ marginLeft: "2rem" }}>
+                <FaArrowDown className="fa-arrows" />
+                {`${Math.round(weather.main.temp_min - 273.15)}`} &deg;
+              </h2>
+            </div>
             <h3 className="forecast">
               {weatherDesc === "clouds"
                 ? "It's sooo cloudy.. STAY HOME !"
@@ -77,7 +81,7 @@ function App() {
                 : weatherDesc === "clear"
                 ? "Sky is so clear.. STAY HOME !"
                 : weatherDesc === "haze"
-                ? "It's sooo hazy.. STAY HOME !"
+                ? "It's sooo haze.. STAY HOME !"
                 : weatherDesc === "mist"
                 ? "It's sooo misty.. STAY HOME !"
                 : weatherDesc === "sand"

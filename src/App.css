@@ -147,6 +147,7 @@ h1{
 h2{
     font-size: 2.7rem;
     font-family: 'Big Shoulders Display', cursive;
+    margin-bottom: 1rem;
 
 }
 h3{
@@ -164,6 +165,7 @@ h3{
     justify-items: center;
     align-items: center;
     grid-template-areas: 
+        "search"
         "temp"
         "city"
         "desc";
@@ -200,4 +202,18 @@ h3{
     justify-content: center;
     align-items: center;
     color: white;
+}
+.Input{
+    margin-right: 1rem;
+    width: 150px;
+}
+.flex{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.fa-arrows{
+    font-size: 1.7rem;
+    margin-right: .5rem;
 }

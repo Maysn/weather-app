@@ -1,52 +1,74 @@
 import React from "react";
 import { useState } from "react";
+import Input from "@mui/material/Input";
+import Button from "@mui/material/Button";
+import { FaSearch } from "react-icons/fa";
 
-function SearchBar({ citiesList }) {
-  // const cities = [
-  //   "Cairo",
-  //   "Msh-Cairo",
-  //   "Alex",
-  //   "Msh-Alex",
-  //   "Luxor",
-  //   "Msh-Luxor",
-  //   "Giza",
-  //   "Msh-Giza",
-  //   "Sharkeya",
-  //   "Mo7e-Mo7e-Mo7e-Mo7e-EL-Sharkawy",
-  //   "Monofeya",
-  //   "Monofeya-msh-bakhel",
-  // ];
+function SearchBar({ setWeather, location }) {
   const [searchQuery, setSearchQuery] = useState("");
 
-  const flattenedCitiesList = citiesList?.reduce(
-    (acc, currItem) => [
-      ...acc,
-      ...currItem.cities.map((city) => ({
-        city: city,
-        country: currItem.country,
-      })),
-    ],
-    []
-  );
-  console.log(flattenedCitiesList);
+  const findWeather = async (requiredCity) => {
+    const fetchWeather = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${requiredCity}&appid=fe4a3c1a83213dc5022ec42fcfc14d53`
+    );
+    const weatherJson = await fetchWeather.json();
+
+    if (weatherJson.message === "city not found") {
+      alert("Invalid city name!");
+      setSearchQuery("");
+      return findWeather(location.city);
+    }
+    setWeather(weatherJson);
+  };
+
+  const handleEnterPress = (e) => {
+    if (!searchQuery) {
+      return;
+    }
+    if (e.key === "Enter") {
+      findWeather(searchQuery);
+    }
+  };
+  const handleSearch = () => {
+    if (!searchQuery) {
+      return;
+    }
+    findWeather(searchQuery);
+  };
+
+  const ariaLabel = { "aria-label": "description" };
+
   return (
-    <div>
-      <input
-        type="text"
-        placeholder="Type your city"
+    <div className="searchbar">
+      <Input
+        sx={{
+          color: "#DCDCDC",
+          "&::after": {
+            borderBottom: "2px solid #DCDCDC",
+          },
+        }}
+        className="Input"
+        placeholder="Type required city"
+        inputProps={ariaLabel}
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
+        onKeyDown={handleEnterPress}
       />
-      <button>search</button>
-      {searchQuery
-        ? flattenedCitiesList
-            .filter((item) =>
-              item.city.toLowerCase().includes(searchQuery.toLowerCase())
-            )
-            .map((item) => (
-              <div className="search_result">{`${item.city}, ${item.country}`}</div>
-            ))
-        : ""}
+      <Button
+        sx={{
+          minWidth: 45,
+          color: "#DCDCDC",
+          borderColor: "#DCDCDC",
+          "&:hover": {
+            color: "white",
+            borderColor: "white",
+          },
+        }}
+        onClick={() => handleSearch()}
+        variant="outlined"
+      >
+        <FaSearch />
+      </Button>
     </div>
   );
 }
